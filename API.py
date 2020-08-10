@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask.views import MethodView
 from MyScraper import get_wiki_data
 
 app = Flask(__name__)
 
 fetch_date = 'November_30'
-scraped_data = ""
+scraped_data = {}
 
 class Wiki(MethodView):
     def get(self):
@@ -17,7 +17,7 @@ class Wiki(MethodView):
         global scraped_data
         fetch_date = date_chosen
         
-        scraped_data = get_wiki_data(date=fetch_date)
+        scraped_data = jsonify(get_wiki_data(date=fetch_date))
         return "DATABASE UPDATED"
 
 wiki_view = Wiki.as_view('wiki_api')
