@@ -20,3 +20,7 @@ def get_wiki_data( date, features=['Events', 'Births', 'Deaths', 'Holidays_and_o
     for heading in headings:
         print( heading.parent.find_next_sibling('ul').get_text(), \
             end='\n\n')
+
+    return "It works"
+
+print(get_wiki_data(date='November_30'))

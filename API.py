@@ -5,7 +5,7 @@ from MyScraper import get_wiki_data
 app = Flask(__name__)
 
 fetch_date = 'November_30'
-scraped_data = None
+scraped_data = ""
 
 class Wiki(MethodView):
     def get(self):
@@ -13,7 +13,8 @@ class Wiki(MethodView):
 
     def post(self, date_chosen):
 
-        global fetch_date ,scraped_data
+        global fetch_date
+        global scraped_data
         fetch_date = date_chosen
         
         scraped_data = get_wiki_data(date=fetch_date)
@@ -28,3 +29,4 @@ app.add_url_rule('/wiki', methods=['GET']\
 
 if __name__=='__main__':
     app.run()
+
