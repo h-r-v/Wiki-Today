@@ -18,13 +18,18 @@ class Wiki(MethodView):
         fetch_date = date_chosen
         
         scraped_data = get_wiki_data(date=fetch_date)
-        print(scraped_data)
         return "DATABASE UPDATED"
 
 wiki_view = Wiki.as_view('wiki_api')
+
 app.add_url_rule('/wiki/<date_chosen>', methods=['POST']\
                  , view_func=wiki_view)
+app.add_url_rule('/wiki/<date_chosen>/', methods=['POST']\
+                 , view_func=wiki_view)
+
 app.add_url_rule('/wiki', methods=['GET']\
+                 , view_func=wiki_view)
+app.add_url_rule('/wiki/', methods=['GET']\
                  , view_func=wiki_view)
 
 if __name__=='__main__':
