@@ -1,0 +1,5 @@
+https://wiki-todayv1.herokuapp.com/wiki or https://wiki-todayv1.herokuapp.com/wiki/November_30 For POST request. Updates the database with information on "November_30"
+
+November_30 could be any date in that format
+
+https://wiki-todayv1.herokuapp.com/wiki or https://wiki-todayv1.herokuapp.com/wiki/ For GET request. Returns a JSON containing Births, Deaths, Events, Holidays of the day passed through using the POST request.
