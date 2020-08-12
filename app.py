@@ -9,7 +9,7 @@ scraped_data = {}
 
 class Wiki(MethodView):
     def get(self):
-        return scraped_data
+        return jsonify(scraped_data)
 
     def post(self, date_chosen):
 
@@ -17,8 +17,12 @@ class Wiki(MethodView):
         global scraped_data
         fetch_date = date_chosen
         
-        scraped_data = jsonify(get_wiki_data(date=fetch_date))
-        return "DATABASE UPDATED"
+        scraped_data = get_wiki_data(date=fetch_date)
+        
+        if list(scraped_data.keys())[0] == "ERROR":
+            return jsonify(scraped_data)
+        
+        return jsonify({"SUCCESS":"DATABASE UPDATED"})
 
 wiki_view = Wiki.as_view('wiki_api')
 

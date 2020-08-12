@@ -18,7 +18,7 @@ def get_wiki_data( date, features=['Events', 'Births', 'Deaths', 'Holidays_and_o
     except URLError as e:
         return {'ERROR':"URL ERROR"} #URLError
 
-    bs = BeautifulSoup(r)
+    bs = BeautifulSoup(r, features="html.parser")
     headings = bs.findAll('span', {'class':'mw-headline', 'id':\
                           features})
 
@@ -32,4 +32,4 @@ def get_wiki_data( date, features=['Events', 'Births', 'Deaths', 'Holidays_and_o
     return data_dict
 
 if __name__=='__main__':
-    print(get_wiki_data( date='February_29'))
+    print(get_wiki_data( date='November_30'))
