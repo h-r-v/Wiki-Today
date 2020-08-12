@@ -20,9 +20,9 @@ class Wiki(MethodView):
         scraped_data = get_wiki_data(date=fetch_date)
         
         if list(scraped_data.keys())[0] == "ERROR":
-            return jsonify(scraped_data)
+            return jsonify(scraped_data), 404
         
-        return jsonify({"SUCCESS":"DATABASE UPDATED"})
+        return jsonify({"SUCCESS":"DATABASE UPDATED"}), 200
 
 wiki_view = Wiki.as_view('wiki_api')
 
