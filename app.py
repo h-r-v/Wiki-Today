@@ -24,6 +24,9 @@ class Wiki(MethodView):
         
         return jsonify({"SUCCESS":"DATABASE UPDATED"})
 
+def hello():
+    return "<h1>IT WORKS!</h1>"
+
 wiki_view = Wiki.as_view('wiki_api')
 
 app.add_url_rule('/wiki/<date_chosen>', methods=['POST']\
@@ -35,6 +38,10 @@ app.add_url_rule('/wiki', methods=['GET']\
                  , view_func=wiki_view)
 app.add_url_rule('/wiki/', methods=['GET']\
                  , view_func=wiki_view)
+
+app.add_url_rule('/', methods=['GET']\
+                 , view_func=hello)
+
 
 if __name__=='__main__':
     app.run()
